@@ -14,11 +14,12 @@
 
 (function () {
   const e = React.createElement;
-  const { useState, useRef } = React;
+  const { useState, useEffect, useRef } = React;
   const {
     ConfigProvider,
     Button,
     Select,
+    Checkbox,
     Tag,
     Table,
     Collapse,
@@ -106,6 +107,286 @@
       e("polyline", { points: "14 2 14 8 20 8" }),
       e("line", { x1: "16", y1: "13", x2: "8", y2: "13" }),
       e("line", { x1: "16", y1: "17", x2: "8", y2: "17" })
+    );
+  }
+
+  const OVERALL_REF_DATA = [
+    { label: "LASSO-CC", neq: 24899, rate: 68.0, color: "#1e40af", costStr: "" },
+    { label: "gemini-4-argon-medium-er", neq: 22133, rate: 60.4, color: "#22c55e", costStr: "($139.06)" },
+    { label: "gemini-4-argon-high-er", neq: 21943, rate: 59.9, color: "#22c55e", costStr: "($567.37)" },
+    { label: "gemini-4-argon-low-er", neq: 21544, rate: 58.8, color: "#22c55e", costStr: "($90.36)" },
+    { label: "LASSO", neq: 21348, rate: 58.3, color: "#3b82f6", costStr: "" },
+    { label: "gemini-4-argon-low-tdg", neq: 20864, rate: 57.0, color: "#15803d", costStr: "($109.35)" },
+    { label: "gemini-4-argon-high-tdg", neq: 20746, rate: 56.6, color: "#15803d", costStr: "($378.90)" },
+    { label: "gemini-4-argon-medium-tdg", neq: 20421, rate: 55.7, color: "#15803d", costStr: "($106.71)" },
+    { label: "SQLWitness", neq: 16252, rate: 44.4, color: "#dc2626", costStr: "" },
+    { label: "ParSEval", neq: 12760, rate: 34.8, color: "#ea580c", costStr: "" },
+    { label: "Polygon", neq: 9177, rate: 25.1, color: "#7c3aed", costStr: "" },
+    { label: "SpotIT", neq: 3293, rate: 9.0, color: "#c026d3", costStr: "" },
+    { label: "XData-CC", neq: 472, rate: 1.3, color: "#92400e", costStr: "" },
+    { label: "XData", neq: 441, rate: 1.2, color: "#0d9488", costStr: "" },
+    { label: "ParSEval-TDG", neq: 66, rate: 0.2, color: "#eab308", costStr: "" },
+  ];
+
+  const OVERALL_TIME_DATA = [
+    { label: "LASSO", avgTime: 0.06, avgTimeStr: "0.06s", color: "#3b82f6" },
+    { label: "LASSO-CC", avgTime: 0.14, avgTimeStr: "0.14s", color: "#1e40af" },
+    { label: "ParSEval-TDG", avgTime: 0.19, avgTimeStr: "0.19s", color: "#eab308" },
+    { label: "SQLWitness", avgTime: 0.88, avgTimeStr: "0.88s", color: "#dc2626" },
+    { label: "Polygon", avgTime: 2.1, avgTimeStr: "2.10s", color: "#7c3aed" },
+    { label: "XData", avgTime: 2.48, avgTimeStr: "2.48s", color: "#0d9488" },
+    { label: "XData-CC", avgTime: 3.65, avgTimeStr: "3.65s", color: "#92400e" },
+    { label: "ParSEval", avgTime: 3.72, avgTimeStr: "3.72s", color: "#ea580c" },
+    { label: "gemini-4-argon-medium-tdg", avgTime: 5.22, avgTimeStr: "5.22s", color: "#15803d" },
+    { label: "gemini-4-argon-low-tdg", avgTime: 5.28, avgTimeStr: "5.28s", color: "#15803d" },
+    { label: "gemini-4-argon-low-er", avgTime: 11.49, avgTimeStr: "11.49s", color: "#22c55e" },
+    { label: "gemini-4-argon-medium-er", avgTime: 13.18, avgTimeStr: "13.18s", color: "#22c55e" },
+    { label: "gemini-4-argon-high-tdg", avgTime: 17.8, avgTimeStr: "17.80s", color: "#15803d" },
+    { label: "SpotIT", avgTime: 27.61, avgTimeStr: "27.61s", color: "#c026d3" },
+    { label: "gemini-4-argon-high-er", avgTime: 31.07, avgTimeStr: "31.07s", color: "#22c55e" },
+  ];
+
+  const BarValueLabelsPlugin = {
+    id: "barValueLabels",
+    afterDatasetsDraw(chart) {
+      const { ctx } = chart;
+      const meta = chart.getDatasetMeta(0);
+      if (!meta || !meta.data) return;
+      const dataset = chart.data.datasets[0];
+      const rawLabels = dataset.displayLabels || [];
+      const isHorizontal = chart.options.indexAxis === "y";
+
+      ctx.save();
+      meta.data.forEach((bar, idx) => {
+        const txt = rawLabels[idx] !== undefined ? String(rawLabels[idx]) : String(dataset.data[idx] ?? "");
+        if (!txt) return;
+        const costMatch = txt.match(/^(.*?\s+)(\(\$[^)]+\))$/);
+        if (isHorizontal) {
+          ctx.textAlign = "left";
+          ctx.textBaseline = "middle";
+          if (costMatch) {
+            const basePart = costMatch[1];
+            const costPart = costMatch[2];
+            ctx.font = '600 11px "Plus Jakarta Sans", -apple-system, sans-serif';
+            ctx.fillStyle = "#0f172a";
+            ctx.fillText(basePart, bar.x + 6, bar.y);
+            const baseWidth = ctx.measureText(basePart).width;
+            ctx.font = '700 11px "Plus Jakarta Sans", -apple-system, sans-serif';
+            ctx.fillStyle = "#c2410c";
+            ctx.fillText(costPart, bar.x + 6 + baseWidth, bar.y);
+          } else {
+            ctx.font = '600 11px "Plus Jakarta Sans", -apple-system, sans-serif';
+            ctx.fillStyle = "#0f172a";
+            ctx.fillText(txt, bar.x + 6, bar.y);
+          }
+        } else {
+          ctx.textAlign = "center";
+          ctx.textBaseline = "bottom";
+          ctx.font = '600 11px "Plus Jakarta Sans", -apple-system, sans-serif';
+          ctx.fillStyle = "#0f172a";
+          ctx.fillText(txt, bar.x, bar.y - 4);
+        }
+      });
+      ctx.restore();
+    },
+  };
+
+  function BarChartCanvas({ labels, values, displayLabels, colors, horizontal = false, height = 260, yMax = null, logScale = false }) {
+    const canvasRef = useRef(null);
+    const chartRef = useRef(null);
+
+    useEffect(() => {
+      if (!canvasRef.current || typeof Chart === "undefined") return;
+      if (chartRef.current) {
+        chartRef.current.destroy();
+        chartRef.current = null;
+      }
+
+      const ctx = canvasRef.current.getContext("2d");
+      const maxVal = values.length ? Math.max(...values) : 10;
+
+      const valueScaleConfig = logScale
+        ? {
+            type: "logarithmic",
+            grid: { display: false },
+            ticks: {
+              font: { family: '"Plus Jakarta Sans", sans-serif', size: 11 },
+              color: "#334155",
+              callback: function (val) {
+                if ([0.01, 0.1, 1, 10, 100, 1000].includes(val)) return val + "s";
+                return "";
+              },
+            },
+          }
+        : {
+            beginAtZero: true,
+            suggestedMax: yMax || maxVal * 1.18,
+            grid: { display: false },
+            ticks: {
+              font: { family: '"Plus Jakarta Sans", sans-serif', size: 11 },
+              color: "#334155",
+            },
+          };
+
+      const categoryScaleConfig = {
+        grid: { display: false },
+        ticks: {
+          font: { family: '"Plus Jakarta Sans", sans-serif', size: 11.5, weight: "600" },
+          color: "#0f172a",
+          autoSkip: false,
+        },
+      };
+
+      chartRef.current = new Chart(ctx, {
+        type: "bar",
+        plugins: [BarValueLabelsPlugin],
+        data: {
+          labels,
+          datasets: [
+            {
+              data: values,
+              displayLabels,
+              backgroundColor: colors,
+              borderColor: colors,
+              borderWidth: 1,
+              borderRadius: 4,
+              maxBarThickness: horizontal ? 22 : 36,
+            },
+          ],
+        },
+        options: {
+          indexAxis: horizontal ? "y" : "x",
+          responsive: true,
+          maintainAspectRatio: false,
+          animation: false,
+          layout: {
+            padding: horizontal
+              ? { top: 4, right: 120, bottom: 4, left: 4 }
+              : { top: 24, right: 10, bottom: 4, left: 4 },
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function (context) {
+                  const i = context.dataIndex;
+                  return displayLabels && displayLabels[i]
+                    ? displayLabels[i]
+                    : String(context.raw);
+                },
+              },
+            },
+          },
+          scales: horizontal
+            ? { x: valueScaleConfig, y: categoryScaleConfig }
+            : { x: categoryScaleConfig, y: valueScaleConfig },
+        },
+      });
+
+      return () => {
+        if (chartRef.current) {
+          chartRef.current.destroy();
+          chartRef.current = null;
+        }
+      };
+    }, [labels, values, displayLabels, colors, horizontal, yMax, logScale]);
+
+    return e(
+      "div",
+      { style: { position: "relative", height: height + "px", width: "100%" } },
+      e("canvas", { ref: canvasRef })
+    );
+  }
+
+  function OverallBenchmarkChartsBox() {
+    const [showPercent, setShowPercent] = useState(false);
+    const [logScaleTime, setLogScaleTime] = useState(true);
+    const chartH = Math.max(320, OVERALL_REF_DATA.length * 24 + 34);
+
+    return e(
+      "div",
+      { className: "chart-pair-box", style: { marginBottom: 32 } },
+      e(
+        "div",
+        {
+          className: "chart-pair-header",
+          style: { flexWrap: "wrap", gap: 12 },
+        },
+        e(
+          "div",
+          null,
+          e("h3", null, "Overall Benchmark Suite (36,634 Query Pairs)"),
+          e("span", { style: { fontSize: "12.5px", color: "#475569" } }, "Aggregated across all 12 benchmarks")
+        ),
+        e(
+          Space,
+          { size: 16, wrap: true },
+          e(
+            Checkbox,
+            {
+              checked: showPercent,
+              onChange: (ev) => setShowPercent(ev.target.checked),
+              style: { fontWeight: 600, fontSize: "12.5px" },
+            },
+            "Show as %"
+          ),
+          e(
+            Checkbox,
+            {
+              checked: logScaleTime,
+              onChange: (ev) => setLogScaleTime(ev.target.checked),
+              style: { fontWeight: 600, fontSize: "12.5px" },
+            },
+            "Log Scale Time"
+          ),
+          e(
+            "a",
+            { href: "/results", style: { fontWeight: 700, fontSize: "13px" } },
+            "Full Results & 12 Benchmarks \u2192"
+          )
+        )
+      ),
+      e(
+        "div",
+        { className: "chart-pair-grid" },
+        e(
+          "div",
+          { className: "sub-chart-panel" },
+          e(
+            "h4",
+            null,
+            showPercent
+              ? "Overall Refutation Rate (%) (Higher is Better)"
+              : "Overall Confirmed Refutations (NEQ Count, Higher is Better)"
+          ),
+          e(BarChartCanvas, {
+            labels: OVERALL_REF_DATA.map((d) => d.label),
+            values: OVERALL_REF_DATA.map((d) => (showPercent ? d.rate : d.neq)),
+            displayLabels: OVERALL_REF_DATA.map((d) => {
+              const base = showPercent ? `${d.rate.toFixed(1)}%` : d.neq.toLocaleString();
+              return d.costStr ? `${base} ${d.costStr}` : base;
+            }),
+            colors: OVERALL_REF_DATA.map((d) => d.color),
+            horizontal: true,
+            height: chartH,
+            yMax: showPercent ? 100 : null,
+          })
+        ),
+        e(
+          "div",
+          { className: "sub-chart-panel" },
+          e("h4", null, "Overall Average Time per Refutation (seconds, Lower is Faster)"),
+          e(BarChartCanvas, {
+            labels: OVERALL_TIME_DATA.map((d) => d.label),
+            values: OVERALL_TIME_DATA.map((d) => d.avgTime),
+            displayLabels: OVERALL_TIME_DATA.map((d) => d.avgTimeStr),
+            colors: OVERALL_TIME_DATA.map((d) => d.color),
+            horizontal: true,
+            height: chartH,
+            logScale: logScaleTime,
+          })
+        )
+      )
     );
   }
 
@@ -753,6 +1034,9 @@
               )
             )
           ),
+
+          // Overall Benchmark Suite Side-by-Side Bar Charts
+          e(OverallBenchmarkChartsBox),
 
           // 2. Demo Section with Prominent Connected 50/50 Tabs
           e(

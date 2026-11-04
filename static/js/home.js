@@ -300,7 +300,7 @@
 
   function OverallBenchmarkChartsBox() {
     const [showPercent, setShowPercent] = useState(false);
-    const [logScaleTime, setLogScaleTime] = useState(true);
+    const [logScaleTime, setLogScaleTime] = useState(false);
     const chartH = Math.max(320, OVERALL_REF_DATA.length * 24 + 34);
 
     return e(

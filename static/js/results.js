@@ -1180,7 +1180,7 @@
   // ========================================================================
   function BenchmarkChartsSection({ summary }) {
     const [showPercent, setShowPercent] = useState(false);
-    const [logScaleTime, setLogScaleTime] = useState(true);
+    const [logScaleTime, setLogScaleTime] = useState(false);
 
     const chartData = useMemo(() => {
       if (!summary || !summary.tables) return null;

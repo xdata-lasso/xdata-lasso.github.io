@@ -68,60 +68,66 @@
 <line x1="420.0" y1="446.5" x2="420.0" y2="450.5" stroke="#94a3b8" stroke-width="1"/>
 <text x="420.0" y="461.5" font-size="10.5" fill="#475569" text-anchor="middle">25,000</text>
 <text x="731" y="104.0" font-size="11.5" font-weight="700" fill="#0f172a" text-anchor="end">LASSO</text>
-<rect x="737" y="92.0" width="54.5" height="16" rx="3" fill="#3b82f6"/>
-<text x="797.5" y="104.0" font-size="11" font-weight="600" fill="#0f172a">0.06s</text>
+<rect x="737" y="92.0" width="2.0" height="16" rx="3" fill="#3b82f6"/>
+<text x="745.0" y="104.0" font-size="11" font-weight="600" fill="#0f172a">0.06s</text>
 <text x="731" y="127.5" font-size="11.5" font-weight="700" fill="#0f172a" text-anchor="end">LASSO-CC</text>
-<rect x="737" y="115.5" width="80.2" height="16" rx="3" fill="#1e40af"/>
-<text x="823.2" y="127.5" font-size="11" font-weight="600" fill="#0f172a">0.14s</text>
+<rect x="737" y="115.5" width="2.0" height="16" rx="3" fill="#1e40af"/>
+<text x="745.0" y="127.5" font-size="11" font-weight="600" fill="#0f172a">0.14s</text>
 <text x="731" y="151.0" font-size="11.5" font-weight="600" fill="#0f172a" text-anchor="end">ParSEval-TDG</text>
-<rect x="737" y="139.0" width="89.5" height="16" rx="3" fill="#eab308"/>
-<text x="832.5" y="151.0" font-size="11" font-weight="600" fill="#0f172a">0.19s</text>
+<rect x="737" y="139.0" width="2.0" height="16" rx="3" fill="#eab308"/>
+<text x="745.0" y="151.0" font-size="11" font-weight="600" fill="#0f172a">0.19s</text>
 <text x="731" y="174.5" font-size="11.5" font-weight="600" fill="#0f172a" text-anchor="end">SQLWitness</text>
-<rect x="737" y="162.5" width="136.1" height="16" rx="3" fill="#dc2626"/>
-<text x="879.1" y="174.5" font-size="11" font-weight="600" fill="#0f172a">0.88s</text>
+<rect x="737" y="162.5" width="7.0" height="16" rx="3" fill="#dc2626"/>
+<text x="750.0" y="174.5" font-size="11" font-weight="600" fill="#0f172a">0.88s</text>
 <text x="731" y="198.0" font-size="11.5" font-weight="600" fill="#0f172a" text-anchor="end">Polygon</text>
-<rect x="737" y="186.0" width="162.6" height="16" rx="3" fill="#7c3aed"/>
-<text x="905.6" y="198.0" font-size="11" font-weight="600" fill="#0f172a">2.10s</text>
+<rect x="737" y="186.0" width="16.8" height="16" rx="3" fill="#7c3aed"/>
+<text x="759.8" y="198.0" font-size="11" font-weight="600" fill="#0f172a">2.10s</text>
 <text x="731" y="221.5" font-size="11.5" font-weight="600" fill="#0f172a" text-anchor="end">XData</text>
-<rect x="737" y="209.5" width="167.6" height="16" rx="3" fill="#0d9488"/>
-<text x="910.6" y="221.5" font-size="11" font-weight="600" fill="#0f172a">2.48s</text>
+<rect x="737" y="209.5" width="19.8" height="16" rx="3" fill="#0d9488"/>
+<text x="762.8" y="221.5" font-size="11" font-weight="600" fill="#0f172a">2.48s</text>
 <text x="731" y="245.0" font-size="11.5" font-weight="600" fill="#0f172a" text-anchor="end">XData-CC</text>
-<rect x="737" y="233.0" width="179.4" height="16" rx="3" fill="#92400e"/>
-<text x="922.4" y="245.0" font-size="11" font-weight="600" fill="#0f172a">3.65s</text>
+<rect x="737" y="233.0" width="29.2" height="16" rx="3" fill="#92400e"/>
+<text x="772.2" y="245.0" font-size="11" font-weight="600" fill="#0f172a">3.65s</text>
 <text x="731" y="268.5" font-size="11.5" font-weight="600" fill="#0f172a" text-anchor="end">ParSEval</text>
-<rect x="737" y="256.5" width="179.9" height="16" rx="3" fill="#ea580c"/>
-<text x="922.9" y="268.5" font-size="11" font-weight="600" fill="#0f172a">3.72s</text>
+<rect x="737" y="256.5" width="29.8" height="16" rx="3" fill="#ea580c"/>
+<text x="772.8" y="268.5" font-size="11" font-weight="600" fill="#0f172a">3.72s</text>
 <text x="731" y="292.0" font-size="11.5" font-weight="600" fill="#0f172a" text-anchor="end">gemini-4-argon-medium-tdg</text>
-<rect x="737" y="280.0" width="190.2" height="16" rx="3" fill="#15803d"/>
-<text x="933.2" y="292.0" font-size="11" font-weight="600" fill="#0f172a">5.22s</text>
+<rect x="737" y="280.0" width="41.8" height="16" rx="3" fill="#15803d"/>
+<text x="784.8" y="292.0" font-size="11" font-weight="600" fill="#0f172a">5.22s</text>
 <text x="731" y="315.5" font-size="11.5" font-weight="600" fill="#0f172a" text-anchor="end">gemini-4-argon-low-tdg</text>
-<rect x="737" y="303.5" width="190.6" height="16" rx="3" fill="#15803d"/>
-<text x="933.6" y="315.5" font-size="11" font-weight="600" fill="#0f172a">5.28s</text>
+<rect x="737" y="303.5" width="42.2" height="16" rx="3" fill="#15803d"/>
+<text x="785.2" y="315.5" font-size="11" font-weight="600" fill="#0f172a">5.28s</text>
 <text x="731" y="339.0" font-size="11.5" font-weight="600" fill="#0f172a" text-anchor="end">gemini-4-argon-low-er</text>
-<rect x="737" y="327.0" width="214.2" height="16" rx="3" fill="#22c55e"/>
-<text x="957.2" y="339.0" font-size="11" font-weight="600" fill="#0f172a">11.49s</text>
+<rect x="737" y="327.0" width="91.9" height="16" rx="3" fill="#22c55e"/>
+<text x="834.9" y="339.0" font-size="11" font-weight="600" fill="#0f172a">11.49s</text>
 <text x="731" y="362.5" font-size="11.5" font-weight="600" fill="#0f172a" text-anchor="end">gemini-4-argon-medium-er</text>
-<rect x="737" y="350.5" width="218.4" height="16" rx="3" fill="#22c55e"/>
-<text x="961.4" y="362.5" font-size="11" font-weight="600" fill="#0f172a">13.18s</text>
+<rect x="737" y="350.5" width="105.4" height="16" rx="3" fill="#22c55e"/>
+<text x="848.4" y="362.5" font-size="11" font-weight="600" fill="#0f172a">13.18s</text>
 <text x="731" y="386.0" font-size="11.5" font-weight="600" fill="#0f172a" text-anchor="end">gemini-4-argon-high-tdg</text>
-<rect x="737" y="374.0" width="227.5" height="16" rx="3" fill="#15803d"/>
-<text x="970.5" y="386.0" font-size="11" font-weight="600" fill="#0f172a">17.80s</text>
+<rect x="737" y="374.0" width="142.4" height="16" rx="3" fill="#15803d"/>
+<text x="885.4" y="386.0" font-size="11" font-weight="600" fill="#0f172a">17.80s</text>
 <text x="731" y="409.5" font-size="11.5" font-weight="600" fill="#0f172a" text-anchor="end">SpotIT</text>
-<rect x="737" y="397.5" width="240.9" height="16" rx="3" fill="#c026d3"/>
-<text x="983.9" y="409.5" font-size="11" font-weight="600" fill="#0f172a">27.61s</text>
+<rect x="737" y="397.5" width="220.9" height="16" rx="3" fill="#c026d3"/>
+<text x="963.9" y="409.5" font-size="11" font-weight="600" fill="#0f172a">27.61s</text>
 <text x="731" y="433.0" font-size="11.5" font-weight="600" fill="#0f172a" text-anchor="end">gemini-4-argon-high-er</text>
-<rect x="737" y="421.0" width="244.5" height="16" rx="3" fill="#22c55e"/>
-<text x="987.5" y="433.0" font-size="11" font-weight="600" fill="#0f172a">31.07s</text>
+<rect x="737" y="421.0" width="248.6" height="16" rx="3" fill="#22c55e"/>
+<text x="991.6" y="433.0" font-size="11" font-weight="600" fill="#0f172a">31.07s</text>
 <line x1="737" y1="88" x2="737" y2="446.5" stroke="#cbd5e1" stroke-width="1"/>
 <line x1="737" y1="446.5" x2="1047" y2="446.5" stroke="#cbd5e1" stroke-width="1"/>
 <line x1="737.0" y1="446.5" x2="737.0" y2="450.5" stroke="#94a3b8" stroke-width="1"/>
-<text x="737.0" y="461.5" font-size="10.5" fill="#475569" text-anchor="middle">0.01s</text>
-<line x1="807.0" y1="446.5" x2="807.0" y2="450.5" stroke="#94a3b8" stroke-width="1"/>
-<text x="807.0" y="461.5" font-size="10.5" fill="#475569" text-anchor="middle">0.1s</text>
-<line x1="877.0" y1="446.5" x2="877.0" y2="450.5" stroke="#94a3b8" stroke-width="1"/>
-<text x="877.0" y="461.5" font-size="10.5" fill="#475569" text-anchor="middle">1s</text>
-<line x1="947.0" y1="446.5" x2="947.0" y2="450.5" stroke="#94a3b8" stroke-width="1"/>
-<text x="947.0" y="461.5" font-size="10.5" fill="#475569" text-anchor="middle">10s</text>
+<text x="737.0" y="461.5" font-size="10.5" fill="#475569" text-anchor="middle">0s</text>
+<line x1="777.0" y1="446.5" x2="777.0" y2="450.5" stroke="#94a3b8" stroke-width="1"/>
+<text x="777.0" y="461.5" font-size="10.5" fill="#475569" text-anchor="middle">5s</text>
+<line x1="817.0" y1="446.5" x2="817.0" y2="450.5" stroke="#94a3b8" stroke-width="1"/>
+<text x="817.0" y="461.5" font-size="10.5" fill="#475569" text-anchor="middle">10s</text>
+<line x1="857.0" y1="446.5" x2="857.0" y2="450.5" stroke="#94a3b8" stroke-width="1"/>
+<text x="857.0" y="461.5" font-size="10.5" fill="#475569" text-anchor="middle">15s</text>
+<line x1="897.0" y1="446.5" x2="897.0" y2="450.5" stroke="#94a3b8" stroke-width="1"/>
+<text x="897.0" y="461.5" font-size="10.5" fill="#475569" text-anchor="middle">20s</text>
+<line x1="937.0" y1="446.5" x2="937.0" y2="450.5" stroke="#94a3b8" stroke-width="1"/>
+<text x="937.0" y="461.5" font-size="10.5" fill="#475569" text-anchor="middle">25s</text>
+<line x1="977.0" y1="446.5" x2="977.0" y2="450.5" stroke="#94a3b8" stroke-width="1"/>
+<text x="977.0" y="461.5" font-size="10.5" fill="#475569" text-anchor="middle">30s</text>
 <line x1="1017.0" y1="446.5" x2="1017.0" y2="450.5" stroke="#94a3b8" stroke-width="1"/>
-<text x="1017.0" y="461.5" font-size="10.5" fill="#475569" text-anchor="middle">100s</text>
+<text x="1017.0" y="461.5" font-size="10.5" fill="#475569" text-anchor="middle">35s</text>
 </svg>
